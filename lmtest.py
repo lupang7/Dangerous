@@ -15,7 +15,7 @@ class SimpleIOSTests(unittest.TestCase):
 
     def setUp(self):
         # set up appium
-        app = os.path.abspath('app/loanmarket.app')
+        app = os.path.abspath('app/loanmarket10000.app')
         self.driver = webdriver.Remote(
             command_executor='http://127.0.0.1:4723/wd/hub',
             #真机的配置
