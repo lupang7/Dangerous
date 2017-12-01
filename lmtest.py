@@ -8,7 +8,7 @@ from random import randint
 from appium import webdriver
 from time import sleep
 import test
-from PIL import Image
+# from PIL import Image
 from imageCmp import Appium_Extend
 
 class SimpleIOSTests(unittest.TestCase):
