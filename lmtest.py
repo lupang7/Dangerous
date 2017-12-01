@@ -34,7 +34,7 @@ class SimpleIOSTests(unittest.TestCase):
                 'platformVersion': '10.2',
                 'deviceName': 'iPhone 6s',
             })
-        self.extend = Appium_Extend(self.driver)
+        # self.extend = Appium_Extend(self.driver)
     sleep(5)
 
     def test_get_screen_by_element(self):
