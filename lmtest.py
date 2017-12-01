@@ -1,3 +1,4 @@
+#coding:utf-8
 """
 Simple iOS tests, showing accessing elements and getting/setting text from them.
 """
