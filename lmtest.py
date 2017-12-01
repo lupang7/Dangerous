@@ -9,7 +9,7 @@ from appium import webdriver
 from time import sleep
 import test
 # from PIL import Image
-from imageCmp import Appium_Extend
+# from imageCmp import Appium_Extend
 
 class SimpleIOSTests(unittest.TestCase):
 
