@@ -38,7 +38,7 @@ class SimpleIOSTests(unittest.TestCase):
     sleep(5)
 
     def test_get_screen_by_element(self):
-        self.driver.get_screenshot_as_file("/Users/panglu/pytest/image/img1.jpg")
+        self.driver.get_screenshot_as_file("/Users/panglu/pytest/image/img1.png")
         # element = self.driver.find_element_by_id("welcome1")
         #
         # load = self.extend.load_image("/Users/panglu/pytest/image/引导页1.jpg")
