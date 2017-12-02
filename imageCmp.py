@@ -1,5 +1,5 @@
-# coding : utf-8
-from PIL import Image
+# coding:utf-8
+# from PIL import Image
 
 
 def calculate(image1, image2):
@@ -35,13 +35,12 @@ def split_image(image, part_size):
 
 
 def classfiy_histogram_with_split(image1, image2, size=(256, 256), part_size=(64, 64)):
-    '''
-     'image1' 和 'image2' 都是Image 对象.
-     可以通过'Image.open(path)'进行创建。
-     'size' 重新将 image 对象的尺寸进行重置，默认大小为256 * 256 .
-     'part_size' 定义了分割图片的大小.默认大小为64*64 .
-     返回值是 'image1' 和 'image2'对比后的相似度，相似度越高，图片越接近，达到100.0说明图片完全相同。
-    '''
+     # image1' 和 'image2' 都是Image 对象.
+     # 可以通过'Image.open(path)'进行创建。
+     # size' 重新将 image 对象的尺寸进行重置，默认大小为256 * 256 .
+     # part_size' 定义了分割图片的大小.默认大小为64*64 .
+     # 返回值是 'image1' 和 'image2'对比后的相似度，相似度越高，图片越接近，达到100.0说明图片完全相同。
+
     img1 = image1.resize(size).convert("RGB")
     sub_image1 = split_image(img1, part_size)
 
