@@ -4,14 +4,11 @@ Simple iOS tests, showing accessing elements and getting/setting text from them.
 """
 import unittest
 import os
-from random import randint
 from appium import webdriver
 from time import sleep
-import test
-
-
-# from PIL import Image
-# from imageCmp import Appium_Extend
+import time
+import imageCmp
+from PIL import Image
 
 class SimpleIOSTests(unittest.TestCase):
     def setUp(self):
@@ -33,24 +30,9 @@ class SimpleIOSTests(unittest.TestCase):
                 'app': app,
                 'platformName': 'iOS',
                 'platformVersion': '11.1',
-                'deviceName': 'iPhone 7',
+                'deviceName': 'iPhone 6s',
             })
-        # self.extend = Appium_Extend(self.driver)
-
     sleep(5)
-
-    # def test_get_screen_by_element(self):
-    #     self.driver.get_screenshot_as_file("/Users/panglu/pytest/image/img1.png")
-    # element = self.driver.find_element_by_id("welcome1")
-    #
-    # load = self.extend.load_image("/Users/panglu/pytest/image/引导页1.jpg")
-    # # 要求百分百相似
-    # result = self.extend.get_screenshot_by_element(element).same_as(load, 0)
-    # self.assertTrue(result)
-
-
-
-
 
     def getSize(self):
         x = self.driver.get_window_size()['width']
@@ -61,7 +43,13 @@ class SimpleIOSTests(unittest.TestCase):
         self.driver.tap([(250, 398)])
         location = self.getSize()
         for i in range(2):
-            self.driver.swipe(start_x=int(location[0]), start_y=int(location[1]/2), end_x=int(-location[0]*2),end_y=0, duration=200)
+            #截图对比
+            img = "/Users/panglu/pytest/image/img" + str(int(time.time())) + ".png"
+            self.driver.get_screenshot_as_file(img)
+            image1 = Image.open("/Users/panglu/pytest/image/引导页" + str(i) + ".png")
+            image2 = Image.open(img)
+            imageCmp.classfiy_histogram_with_split(image1, image2)
+            self.driver.swipe(int(location[0]), int(location[1]/2), int(-location[0]*2),0, 200)
             sleep(3)
         self.driver.find_element_by_accessibility_id("立即使用").click()
 
