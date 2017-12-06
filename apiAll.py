@@ -1,6 +1,8 @@
 #coding=utf-8
 
 import requests
+import json
+import random
 
 def getCard():
     url = "https://66qianzhuang-api-test.yangqianguan.com/api/home/card"
@@ -10,5 +12,5 @@ def getCard():
         'deviceid': "F8B61417-4975-4C26-A46A-92DE4C964801",
         }
     response = requests.request("GET", url, headers=headers)
-
-    print(response.text)
+    res = response.text
+    return res
