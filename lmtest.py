@@ -9,6 +9,9 @@ from time import sleep
 import time
 import imageCmp
 from PIL import Image
+import apiAll
+import json
+import random
 
 class SimpleIOSTests(unittest.TestCase):
     def setUp(self):
@@ -31,6 +34,8 @@ class SimpleIOSTests(unittest.TestCase):
                 'platformName': 'iOS',
                 'platformVersion': '11.1',
                 'deviceName': 'iPhone 6s',
+                'noReset': 'true'
+
             })
     sleep(5)
 
@@ -39,7 +44,7 @@ class SimpleIOSTests(unittest.TestCase):
         y = self.driver.get_window_size()['height']
         return (x, y)
 
-    def test_leftScroll(self):
+    def test_a_welcome(self):
         self.driver.tap([(250, 398)])
         location = self.getSize()
         for i in range(2):
@@ -52,6 +57,48 @@ class SimpleIOSTests(unittest.TestCase):
             self.driver.swipe(int(location[0]), int(location[1]/2), int(-location[0]*2),0, 200)
             sleep(3)
         self.driver.find_element_by_accessibility_id("立即使用").click()
+
+    # def test_b_login(self):
+    #     self.driver.find_element_by_accessibility_id("userCenter").click()
+    #     self.driver.find_element_
+    #     self.driver.find_element_by_xpath('//XCUIElementTypeApplication[@name="六六钱庄"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField[1]/XCUIElementTypeTextField').click()
+    #     list = ('130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '144', '147',
+    #             '150', '151', '152', '153', '155', '156', '157', '158', '159', '176', '177', '178',
+    #             '180', '181', '182', '183', '184', '185', '186', '187', '188', '189',)
+    #     telNum = random.choice(list) + "".join(random.choice('0123456789') for i in range(8))
+    #     for j in telNum :
+    #         self.driver.find_element_by_accessibility_id("j").click()
+    #
+    #     self.driver.find_element_by_accessibility_id('获取验证码').click()
+    #     sleep(3)
+    #     self.driver.find_element_by_xpath('').send_keys('141212')
+    #     self.driver.find_element_by_ios_uiautomation()
+    #     sleep(3)
+    #     self.driver.find_element_by_accessibility_id('登录').click()
+    #     self.driver.find_element_by_accessibility_id('userCenter').click()
+    #     sleep(3)
+    #     self.driver.find_element_by_accessibility_id('ic fh').click()
+
+
+
+    def test_c_homePage(self):
+        res = apiAll.getCard()
+        rescard = json.loads(res)
+        cardNum = len(rescard['body'])
+        print(cardNum)
+        if cardNum >= 2:
+            self.driver.find_element_by_xpath ("//XCUIElementTypeApplication[@name=\"六六钱庄\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[1]").click()
+            self.driver.find_element_by_accessibility_id("返回").click()
+
+        else:
+            print("卡片为空")
+
+    def test_d_allProduct(self):
+        self.driver.find_element_by_accessibility_id("全部贷款").click()
+
+    def test_e_Activity(self):
+        self.driver.find_element_by_accessibility_id("更多活动").click()
+
 
 
 
